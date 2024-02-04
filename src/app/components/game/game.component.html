@@ -1,0 +1,35 @@
+<section class="game-section position-relative d-flex flex-column align-items-center justify-content-between">
+    <!-- Player 2 -->
+    <div class="w-100 d-flex align-items-start justify-content-end pt-4 pe-4">
+        <div class="d-flex align-items-center justify-content-end gap-2">
+            <img src="/assets/icons/heart.png" alt="HP 3" *ngIf="showHP.opponentHP > 2">
+            <img src="/assets/icons/heart.png" alt="HP 2" *ngIf="showHP.opponentHP > 1">
+            <img src="/assets/icons/heart.png" alt="HP 1" *ngIf="showHP.opponentHP >= 1">
+            <p (click)="runLoseAnimation()">aasdasdasd</p>
+        </div>
+    </div>
+    <button class="fire-btn oponnent-btn bg-transparent shadow-none text-uppercase" (click)="fire(youArePlayer === 'player1' ? 'player2' : 'player1')">Ele</button>
+
+
+    <!-- Shotgun -->
+    <img src="/assets/icons/shotgun.png" alt="Shotgun" class="shotgun cursor-pointer" width="200px">
+
+    <!-- Sorted Ammo -->
+    <div *ngIf="showSortedAmmo" class="sorted-ammo d-flex align-items-center justify-content-start gap-1 p-2">
+        <img 
+            *ngFor="let bullet of sortedShotgun" 
+            [src]="bullet ? '/assets/icons/true-bullet.png' : '/assets/icons/false-bullet.png'"
+            [alt]="bullet ? 'Bala verddadeira' : 'Bala falsa'"
+            width="12px">
+    </div>
+
+    <!-- Player 1 -->
+    <div class="w-100 d-flex align-items-start justify-content-start pb-4 ps-4">
+        <div class="d-flex align-items-center justify-content-start gap-2">
+            <img src="/assets/icons/heart.png" alt="HP" *ngIf="showHP.myHP >= 1">
+            <img src="/assets/icons/heart.png" alt="HP" *ngIf="showHP.myHP > 1">
+            <img src="/assets/icons/heart.png" alt="HP" *ngIf="showHP.myHP > 2">
+        </div>
+    </div>
+    <button class="fire-btn you-btn bg-transparent shadow-none text-uppercase" (click)="fire(youArePlayer)">Você</button>
+</section>

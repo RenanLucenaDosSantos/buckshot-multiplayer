@@ -1,0 +1,6 @@
+<p>{{ iAmInRoom ? 'Dentro da sala' : 'Fora da sala' }}</p>
+<p *ngIf="!iAmInRoom && someoneInRoom">Alguem entrou na sala</p>
+
+<button *ngIf="!iAmInRoom" [disabled]="!canEnter" (click)="enterRoom()">Entrar na Sala</button>
+
+<button *ngIf="iAmInRoom" (click)="leaveRoom()">Sair da Sala</button>
