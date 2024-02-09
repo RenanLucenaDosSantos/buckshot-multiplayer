@@ -1,6 +1,16 @@
-<p>{{ iAmInRoom ? 'Dentro da sala' : 'Fora da sala' }}</p>
-<p *ngIf="!iAmInRoom && someoneInRoom">Alguem entrou na sala</p>
+<!-- <p>{{ iAmInRoom ? 'Dentro da sala' : 'Fora da sala' }}</p>
+<p *ngIf="!iAmInRoom && someoneInRoom">Alguem entrou na sala</p> -->
+<section class="lobby min100vh min100vw" [class.in-room]="iAmInRoom">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col h-100 d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <div></div>
+                <button class="border-0 bg-transparent shadow-none fade-in" *ngIf="!iAmInRoom && canEnter" (click)="enterRoom()">
+                    <img src="/assets/icons/door.png" alt="Entrar na sala">
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
-<button *ngIf="!iAmInRoom" [disabled]="!canEnter" (click)="enterRoom()">Entrar na Sala</button>
-
-<button *ngIf="iAmInRoom" (click)="leaveRoom()">Sair da Sala</button>
+<!-- <button *ngIf="iAmInRoom" (click)="leaveRoom()">Sair da Sala</button> -->

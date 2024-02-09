@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { enterRoomDto } from 'src/app/dto/enter-room.dto';
 import { GameService } from 'src/app/services/game.service';
 import { LobbyService } from 'src/app/services/lobby.service';
+import { Howl } from 'howler';
 
 @Component({
   selector: 'app-lobby',
@@ -40,7 +41,11 @@ export class LobbyComponent implements OnInit {
  
     this.GameService.gameIsRunning$().subscribe({
       next: (data) => {
-        if(data) this.router.navigate(['/in-room'])
+        if(data) {
+          setTimeout(() => {
+            this.router.navigate(['/in-room'])
+          }, 1000)
+        }
       }
     })
   }
@@ -54,6 +59,12 @@ export class LobbyComponent implements OnInit {
     this.LobbyService.enterRoom(dto).subscribe({
       next: () => {
         this.iAmInRoom = true
+
+        const doorSound = new Howl({
+          src: ['/assets/sounds/open-door.wav'],
+        });
+        doorSound.volume(1)
+        doorSound.play()
       },
       error: (err) => {
         console.log(err)

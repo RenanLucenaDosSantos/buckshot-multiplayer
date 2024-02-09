@@ -81,7 +81,6 @@ export class AppComponent implements OnInit {
 
     this.GatewayService.listen('fire').subscribe({
       next: (data: any) => {
-        console.log('fire', data)
         this.GameService.fire.next(data)
       },
       error: (err) => {

@@ -1,8 +1,66 @@
 // General
+html, body {
+    overflow: hidden;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
+
+.min100vh {
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.min100vw {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 100vw;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation-name: fade-in;
+    animation-duration: .3s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
 // Lobby
+
+.lobby {
+    &::after {
+        position: absolute;
+        content: "";
+        z-index: 5;
+        background-color: #000;
+        opacity: 0;
+        width: 100vw;
+        height: 0;
+
+        top: 0;
+        left: 0;
+
+        transition: opacity .3s ease;
+    }
+
+    &.in-room::after {
+        height: 100vh;
+        opacity: 1;
+    }
+}
 
 // Game
 .game-section {
@@ -12,6 +70,26 @@
     min-width: 100vw;
     max-height: 100vh;
     max-width: 100vw;
+
+    &::after {
+        position: absolute;
+        content: "";
+        z-index: 5;
+        background-color: #000;
+        opacity: 0;
+        width: 100vw;
+        height: 0;
+
+        top: 0;
+        left: 0;
+
+        transition: opacity .3s ease;
+    }
+
+    &.starting::after {
+        height: 100vh;
+        opacity: 1;
+    }
 }
 
 .shotgun {
@@ -21,6 +99,37 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    rotate: 0deg;
+    transition: .35s ease-out;
+
+    &.pointed-enemy {
+        transform: translate(-50%, -50%) rotateZ(90deg);
+    }
+
+    &.pointed-me {
+        transform: translate(-50%, -50%) rotateZ(-90deg);
+    }
+
+    &.pointed-neutral {
+        transform: translate(-50%, -50%) rotateZ(0deg);
+    }
+
+    &.pointed-ready {
+        transform: translate(-50%, -50%) rotateZ(20deg);
+        // rotate: -90deg;
+    }
+}
+
+.bullet {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotateZ(0deg);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+
+    transition: transform .4s cubic-bezier(0, 0, 1, 1), top .4s cubic-bezier(0, 0, 1, 1), left .4s cubic-bezier(0, 0, 1, 1);
 }
 
 .sorted-ammo {
@@ -48,3 +157,29 @@
 .oponnent-btn {
     top: 0;
 }
+
+// .screen-effect {
+//     background: transparent;
+//     top: 0;
+//     left: 0;
+//     z-index: 999;
+//     height: 0;
+//     width: 0;
+//     transition: background none;
+    
+//     &.enemy-damage {
+//         background: rgba(255, 255, 255, 1);
+//         height: 100vh;
+//         height: 100dvh;
+//         width: 100vw;
+//         transition: background .4s;
+//     }
+    
+//     &.me-damage {
+//         background: rgba(0, 0, 0, 1);
+//         height: 100vh;
+//         height: 100dvh;
+//         width: 100vw;
+//         transition: background .4s;
+//     }
+// }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { GameComponent } from './components/game/game.component';
+import { canActivateMatch } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'in-room',
-    component: GameComponent
+    component: GameComponent,
+    canActivate: [canActivateMatch]
   },
 ];
 
